@@ -1,7 +1,5 @@
-# Disable Page Visibility API
-Add-on to disable the Page Visibility API. 
-
-This prevents e.g. video conferencing systems from tracking whether you are currently in another window.
+4164642d6f6e20746f2070726576656e742077656273697465732066726f6d20646574656374696e6720796f75206265696e67206f6e20616e6f746865722077656273697465206f722077696e646f772e
+### [Status: Un-tested (Likely not patched)]
 
 ## License
 This program is free software: you can redistribute it and/or modify
