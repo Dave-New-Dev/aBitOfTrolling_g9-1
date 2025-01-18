@@ -24,6 +24,15 @@ window.addEventListener(
 	true
 );
 
+/* If problem arises, replace 'window' with 'document' */
+Object.defineProperty(window, "visibilityState", {
+    get: () => "visible",
+});
+
+Object.defineProperty(window, "hidden", {
+    get: () => false,
+});
+
 window.addEventListener(
 	"webkitvisibilitychange",
 	function (event) {
@@ -39,3 +48,11 @@ window.addEventListener(
 	},
 	true
 );
+
+window.addEventListener("focus",
+	function (event) {
+		event.stopImmediatePropagation();
+	},
+	true
+);
+
