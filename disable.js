@@ -49,7 +49,8 @@ window.addEventListener(
 	true
 );
 
-window.addEventListener("focus",
+window.addEventListener(
+	"focus",
 	function (event) {
 		event.stopImmediatePropagation();
 	},
