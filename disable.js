@@ -16,14 +16,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-window.addEventListener(
-	"visibilitychange",
-	function (event) {
-		event.stopImmediatePropagation();
-	},
-	true
-);
 
+// Dealing with page visibility API:
 /* If problem arises, replace 'window' with 'document' */
 Object.defineProperty(window, "visibilityState", {
     get: () => "visible",
@@ -34,6 +28,14 @@ Object.defineProperty(window, "hidden", {
 });
 
 window.addEventListener(
+	"visibilitychange",
+	function (event) {
+		event.stopImmediatePropagation();
+	},
+	true
+);
+
+window.addEventListener(
 	"webkitvisibilitychange",
 	function (event) {
 		event.stopImmediatePropagation();
@@ -41,6 +43,7 @@ window.addEventListener(
 	true
 );
 
+// Dealing with (simulating) blur and focus events:
 window.addEventListener(
 	"blur",
 	function (event) {
@@ -57,3 +60,26 @@ window.addEventListener(
 	true
 );
 
+// Dealing with (spoofing) heartbeat monitoring:
+const originalSetInterval = window.setInterval;
+window.setInterval = (callback, delay) => originalSetInterval(callback, delay <= 1000 ? delay : 1000);
+
+// Dealing with (spoofing) websocket and polling:
+setInterval(() => {
+	fetch("https://example.com/heartbeat").then((response) => response.json());
+	},
+	1000
+);
+
+// Dealing with media query triggers (e.g. change in window size or focus)
+const originalMatchMedia = window.matchMedia;
+window.matchMedia = (query) => ({
+    matches: true,
+    media: query,
+    addEventListener: () => {},
+    removeEventListener: () => {},
+});
+
+// Dealing with (spoofing) cpu throttling:
+const originalPerformanceNow = performance.now;
+performance.now = () => originalPerformanceNow() + 16; // simulate around 60fps
