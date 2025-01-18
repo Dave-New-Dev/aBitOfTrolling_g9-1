@@ -17,5 +17,3 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-### Icon
-The addon's icon is a derivative of "[Expand New Tab](https://thenounproject.com/term/expand-new-tab/1598671/)" by Syafiqa Fickle from the Noun Project, used under CC BY.
